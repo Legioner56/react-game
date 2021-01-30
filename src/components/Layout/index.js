@@ -1,7 +1,8 @@
 import s from './style.module.css';
 
-const Layout = ({ id, title, desc, colorBg = '', urlBg = ''}) => {
+const Layout = ({ id, title, colorBg = '', urlBg = '', children}) => {
     let bgImg = (urlBg) ? `url(${urlBg})` : '';
+
     return (
         <section className={ s.root } id={ id } style={{ 'backgroundColor': `${colorBg}`, 'backgroundImage': `${bgImg}` }}>
             <div className={ s.wrapper }>
@@ -14,7 +15,7 @@ const Layout = ({ id, title, desc, colorBg = '', urlBg = ''}) => {
                     </div>
                     <div className={`${s.desc} ${s.full}`}>
                         {
-                            desc && (<p>{ desc }</p>)
+                            children && (<p>{ children }</p>)
                         }
                     </div>
                 </article>
