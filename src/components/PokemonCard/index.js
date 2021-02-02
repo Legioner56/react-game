@@ -1,24 +1,28 @@
 import { useState } from 'react';
+import cn from 'classnames';
+import ImgBackCard from '../../assets/card-back-side.jpg';
+
 import s from './style.module.css';
 
-const PokemonCard = ({pokemon, imgBack}) => {
+const PokemonCard = ({pokemon}) => {
     const [isActive, setActive] = useState(false);
 
     const handleClick = () => {
-        setActive(!isActive);
+        setActive(prevState => !prevState);
     }
 
     return (
         <div className={s.root} onClick={ handleClick }>
-            <div className={`${s.pokemonCard} ${(isActive ? s.active : '')}`}>
+
+            <div className={cn(s.pokemonCard, { [s.active]: isActive })}>
                 <div className={s.cardFront}>
-                    <div className={`${s.wrap} ${s.front}`}>
-                        <div className={`${s.pokemon} ${s[pokemon.type]}`}>
+                    <div className={cn(s.wrap, s.front)}>
+                        <div className={cn(s.pokemon, s[pokemon.type])}>
                             <div className={s.values}>
-                                <div className={`${s.count} ${s.top}`}>{pokemon.values.top}</div>
-                                <div className={`${s.count} ${s.right}`}>{pokemon.values.right}</div>
-                                <div className={`${s.count} ${s.bottom}`}>{pokemon.values.bottom}</div>
-                                <div className={`${s.count} ${s.left}`}>{pokemon.values.left}</div>
+                                <div className={cn(s.count, s.top)}>{pokemon.values.top}</div>
+                                <div className={cn(s.count, s.right)}>{pokemon.values.right}</div>
+                                <div className={cn(s.count, s.bottom)}>{pokemon.values.bottom}</div>
+                                <div className={cn(s.count, s.left)}>{pokemon.values.left}</div>
                             </div>
                             <div className={s.imgContainer}>
                                 <img src={pokemon.img} alt={pokemon.name}/>
@@ -33,8 +37,8 @@ const PokemonCard = ({pokemon, imgBack}) => {
                 </div>
 
                 <div className={s.cardBack}>
-                    <div className={`${s.wrap} ${s.back}`}>
-                        <img src={imgBack} alt="Сard Backed"/>
+                    <div className={cn(s.wrap, s.back)}>
+                        <img src={ImgBackCard} alt="Сard Backed"/>
                     </div>
                 </div>
 
