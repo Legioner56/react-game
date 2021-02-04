@@ -1,4 +1,5 @@
 import s from './style.module.css';
+import MenuHeader from "../../components/MenuHeader";
 
 const GamePage = ({ onChangePage }) => {
     const goToBack = () => {
@@ -7,9 +8,14 @@ const GamePage = ({ onChangePage }) => {
 
     return (
         <>
-            This GamePage!!!
+            <MenuHeader bgActive={ true } />
 
-            <button onClick={goToBack}>Вернуться на главную</button>
+            <div className={ s['game-page'] }>
+                This GamePage!!!
+
+                <button onClick={goToBack}>Вернуться на главную</button>
+            </div>
+
         </>
     );
 }

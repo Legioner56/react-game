@@ -145,11 +145,11 @@ const POKEMON = [
 
 let PokemonList = POKEMON.map(item => <PokemonCard key={ item.id } pokemon={item} />);
 
-function HomePage() {
+function HomePage({ onChangePage }) {
     return (
         <>
             <MenuHeader />
-            <Header title='Game' descr='good game'/>
+            <Header title='Game' descr='good game' onChangePage={ onChangePage }/>
             <Layout id='1' title='Название 1' urlBg={BgOne}>
                 In the game two players face off against one another, one side playing as "blue", the other as "red"
                 on a 3x3 grid.
