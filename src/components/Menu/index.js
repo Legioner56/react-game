@@ -1,26 +1,30 @@
 import cn from 'classnames';
 import s from './style.module.css';
+import { NavLink } from "react-router-dom";
 
 const MENU = [
     {
         title: 'HOME',
-        to: '#welcome'
+        to: '/'
     },
     {
         title: 'GAME',
-        to: '#game'
+        to: '/game'
     },
     {
         title: 'ABOUT',
-        to: '#about'
+        to: '/about'
     },
     {
         title: 'CONTACT',
-        to: '#contact'
+        to: '/contact'
     },
 ]
 
-const Menu = ({isNavbar}) => {
+const Menu = ({isNavbar, onChangeMenu}) => {
+    const handleClick = () => {
+        onChangeMenu()
+    }
     return (
         <div className={cn(s.menuContainer, {
             [s.active] : isNavbar === true,
@@ -32,9 +36,9 @@ const Menu = ({isNavbar}) => {
                     {
                         MENU.map(({title, to}, index) => (
                             <li key={index}>
-                                <a href={`#${to}`}>
+                                <NavLink onClick={handleClick} to={`${to}`}>
                                     {title}
-                                </a>
+                                </NavLink>
                             </li>
                         ))
                     }
