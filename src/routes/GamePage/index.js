@@ -1,6 +1,6 @@
 import s from './style.module.css';
-import { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import {useState, useEffect} from 'react';
+import {useHistory} from 'react-router-dom';
 import PokemonCard from "../../components/PokemonCard";
 import React from "react";
 import database from "../../service/firebase";
@@ -17,7 +17,7 @@ const GamePage = () => {
         database.ref('pokemons').once('value', (snapshot) => {
             setPokemon(snapshot.val());
         });
-    }, [pokemon]);
+    }, []);
 
     const addPokemon = () => {
         var newPokemonKey = database.ref().child('pokemons').push().key;
@@ -33,11 +33,18 @@ const GamePage = () => {
                 const pokemon = {...item[1]};
                 if (item[0] === id) {
                     database.ref('pokemons/' + item[0]).set({
-                       ...pokemon,
-                       isActive: !pokemon.isActive,
-                    });
+                        ...pokemon,
+                        isActive: !pokemon.isActive,
+                    }).then(
+                        acc[item[0]] = {
+                            ...pokemon,
+                            isActive: !pokemon.isActive
+                        }
+                    )
+                } else {
+                    acc[item[0]] = pokemon;
                 }
-                acc[item[0]] = pokemon;
+
                 return acc;
             }, {});
         });
@@ -48,10 +55,10 @@ const GamePage = () => {
             This GamePage!!!
 
 
-
             <div className="flex">
                 {
-                    Object.entries(pokemon).map(([key, item]) => <PokemonCard modPokemon={modPokemon} key={ key } pokemon={item} pokemonId={key} />)
+                    Object.entries(pokemon).map(([key, item]) => <PokemonCard modPokemon={modPokemon} key={key}
+                                                                              pokemon={item} pokemonId={key}/>)
                 }
             </div>
 
