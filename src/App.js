@@ -5,10 +5,11 @@ import HomePage from "./routes/HomePage";
 import ContactPage from "./routes/ContactPage";
 import AboutPage from "./routes/AboutPage";
 import GamePage from "./routes/GamePage";
-
 import cn from 'classnames';
 import s from './style.module.css';
 import NotFound from "./routes/NotFound";
+
+
 
 const App = () => {
     const match = useRouteMatch('/');
